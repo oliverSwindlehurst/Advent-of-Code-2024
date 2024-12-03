@@ -13,6 +13,12 @@ def is_safe(row):
 # Each line in the file is split into integers and added to the `data` list
 data = [[int(y) for y in x.split(' ')] for x in open('Day 2\Input.txt').read().split('\n')]
 
-# Count the number of "safe" rows using the `is_safe` function
-safe_count = sum([is_safe(row) for row in data])
-print(safe_count)  # Print the count of safe rows
+# Modified safe row calculation:
+# For each row, consider removing one element at a time and check if the remaining
+# elements form a "safe" row. Count how many rows have at least one such removal
+safe_count = sum([
+    # Check if the row becomes safe after removing any single element
+    any([is_safe(row[:i] + row[i + 1:]) for i in range(len(row))]) 
+    for row in data
+])
+print(safe_count)  # Print the modified safe row count
