@@ -1,0 +1,19 @@
+Explanation:
+1. Function is_safe:
+This function determines whether a row of numbers is considered "safe."
+The safety condition is defined as all consecutive differences being in the sets {1, 2, 3} or {-1, -2, -3}. For example, a sequence like [1, 2, 3, 4] (differences of 1) or [10, 7, 5] (differences of -3 and -2) would be safe.
+
+2.Reading Data:
+The input file is read line by line. Each line is split into numbers (using spaces as delimiters) and converted to integers. The resulting data structure is a list of lists (data), where each inner list represents a row of numbers.
+
+3.Safe Row Count (First Count):
+The first safe_count calculates how many rows in the data satisfy the safety condition as-is.
+This is done by applying the is_safe function to each row and summing up the results.
+
+4.Safe Row Count After Removing an Element (Second Count):
+The second safe_count calculates how many rows can become safe if any one number is removed.
+This is done by checking all possible sub-rows formed by removing one number at a time (row[:i] + row[i+1:]), and testing each sub-row with is_safe.
+The any function ensures that if at least one sub-row is safe, the original row contributes to the count.
+
+Output:
+The program prints the total number of safe rows in the original data and the total number of rows that can be made safe by removing one element.
